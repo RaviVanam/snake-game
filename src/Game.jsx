@@ -1,10 +1,11 @@
 import GameGrid from "./components/GameGrid";
-import { useState } from "react";
+import { useReducer } from "react";
 import { gridRows as rows, gridCols as cols, snakePosition as initialPostion } from "./initialValues.js"
+import { gridReducer } from "./reducers.js";
 
 export default function Game() {
 
-    const [grid, setGrid] = useState({
+    const [grid, dispatchGrid] = useReducer(gridReducer, {
         cells: new Array(rows).fill(null).map(() => new Array(cols).fill('empty')),
         snake: [],
         food: [],
@@ -12,6 +13,7 @@ export default function Game() {
 
     return (
         <>
+            <button style={{ fontSize: 42, marginLeft: '700px' }}>move</button>
             <GameGrid cells={grid.cells} />
         </>
     )
