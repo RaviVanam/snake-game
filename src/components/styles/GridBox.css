@@ -13,3 +13,15 @@
     border: 1px solid black;
     width: fit-content;
 }
+
+.grid-box.empty {
+    background-color: white;
+}
+
+.grid-box.food {
+    background-color: orange;
+}
+
+.grid-box.snake {
+    background-color: springgreen;
+}
