@@ -1,5 +1,5 @@
-const gridRows = 5;
-const gridCols = 10;
+const gridRows = 20;
+const gridCols = 40;
 
 const gridValues = [];
 
