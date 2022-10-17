@@ -1,12 +1,14 @@
 import GridBox from './GridBox'
+import { v4 as uuid } from 'uuid'
 
-export default function GameGrid({ gridValues }) {
+export default function GameGrid({ grid }) {
+
     return (
         <div className="grid">
-            {gridValues.map(gridRowValues =>
-                <div className="grid-row">
-                    {gridRowValues.map(gridItemValues =>
-                        <GridBox itemValues={gridItemValues} />
+            {grid.map(rows =>
+                <div key={uuid()} className="grid-row">
+                    {rows.map(gridItemValues =>
+                        <GridBox key={uuid()} itemValues={gridItemValues} />
                     )}
                 </div>
             )}

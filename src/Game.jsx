@@ -1,11 +1,16 @@
 import GameGrid from "./components/GameGrid";
-import { gridValues } from "./initialValues";
+import { useState } from "react";
 
 export default function Game() {
+    const [rows, cols] = [20, 40];
+
+    const [grid, setGrid] = useState(
+        new Array(rows).fill(null).map(() => new Array(cols).fill(null))
+    );
 
     return (
         <>
-            <GameGrid gridValues={gridValues} />
+            <GameGrid grid={grid} />
         </>
     )
 }
