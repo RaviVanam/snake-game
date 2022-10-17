@@ -1,6 +1,5 @@
 {
   "name": "snake-game",
-  "homepage": "https://ravivanam.github.io/snake-game",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
