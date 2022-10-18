@@ -4,19 +4,16 @@ export function gridReducer(grid, action) {
     switch (action.type) {
         case 'moved': {
             const [i, j] = grid.snake[grid.snake.length - 1];
-            const tail = grid.snake[0];
             const newPostion = getNextPostion(i, j, grid.cells.length, grid.cells[0].length, grid.direction);
             const newSnake = grid.snake.filter((pos, i) => i !== 0);
             newSnake.push(newPostion);
+            const newCells = grid.cells.map((cellRows) => cellRows.map((cellValue) => (cellValue === 'snake') ? 'empty' : cellValue));
+            newSnake.forEach(pos => {
+                newCells[pos[0]][pos[1]] = 'snake';
+            });
             return {
                 ...grid,
-                cells: grid.cells.map((cellRows, row) => {
-                    return cellRows.map((item, col) => {
-                        if (newPostion[0] === row && newPostion[1] === col) return 'snake';
-                        if (tail[0] === row && tail[1] === col) return 'empty';
-                        return item;
-                    })
-                }),
+                cells: newCells,
                 snake: newSnake,
             };
         }
