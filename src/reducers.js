@@ -1,5 +1,5 @@
 import { Directions } from "./components/utilities/directions";
-import { initialState } from "./initialValues";
+import { initialState, gridRows, gridCols } from "./initialValues";
 
 export function gridReducer(grid, action) {
     switch (action.type) {
@@ -9,6 +9,7 @@ export function gridReducer(grid, action) {
         case 'moved': {
             const [i, j] = grid.snake[grid.snake.length - 1];
             const newPostion = getNextPostion(i, j, grid.cells.length, grid.cells[0].length, grid.direction);
+            // if newPostion is snake itself then end the game
             if (grid.snakeSet[newPostion[0]][newPostion[1]]) return { ...grid, endGame: true, firstGame: false };
             const isFood = grid.cells[newPostion[0]][newPostion[1]] === 'food';
             const newSnake = grid.snake.filter((pos, i) => (i !== 0 || isFood));
@@ -27,6 +28,7 @@ export function gridReducer(grid, action) {
             };
         }
         case 'directionChanged': {
+            if (isSnakeTryingToReverse(grid.snake, action.newDirection)) return grid;
             return { ...grid, direction: action.newDirection }
         }
         case 'placeFood': {
@@ -68,4 +70,10 @@ function getNextPostion(i, j, rows, cols, direction) {
     }
 
     return [(i >= 0) ? i % rows : i + rows, (j >= 0) ? j % cols : j + cols];
+}
+
+function isSnakeTryingToReverse(snake, direction) {
+    if (snake.length <= 1) return false;
+    const nextPostion = getNextPostion(...snake[snake.length - 1], gridRows, gridCols, direction);
+    return nextPostion[0] === snake[snake.length - 2][0] && nextPostion[1] === snake[snake.length - 2][1];
 }

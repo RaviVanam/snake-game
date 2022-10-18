@@ -35,7 +35,7 @@ export default function Game() {
         return () => {
             clearInterval(id);
         }
-    }, [grid.endGame]);
+    }, [grid.endGame, grid.speed]);
 
     // randomly generate food
     useEffect(() => {
