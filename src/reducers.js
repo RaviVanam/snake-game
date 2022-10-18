@@ -1,10 +1,15 @@
 import { Directions } from "./components/utilities/directions";
+import { initialState } from "./initialValues";
 
 export function gridReducer(grid, action) {
     switch (action.type) {
+        case 'startGame': {
+            return { ...initialState, firstGame: false, endGame: false };
+        }
         case 'moved': {
             const [i, j] = grid.snake[grid.snake.length - 1];
             const newPostion = getNextPostion(i, j, grid.cells.length, grid.cells[0].length, grid.direction);
+            if (grid.snakeSet[newPostion[0]][newPostion[1]]) return { ...grid, endGame: true, firstGame: false };
             const isFood = grid.cells[newPostion[0]][newPostion[1]] === 'food';
             const newSnake = grid.snake.filter((pos, i) => (i !== 0 || isFood));
             newSnake.push(newPostion);

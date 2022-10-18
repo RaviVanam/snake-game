@@ -1,22 +1,12 @@
 import GameGrid from "./components/GameGrid";
 import { useEffect, useReducer } from "react";
-import { initialCells, snakePositions as initialPostions, initialSnakeSet } from "./initialValues.js"
 import { gridReducer } from "./reducers.js";
-import { Directions } from "./components/utilities/directions";
-
+import { initialState } from "./initialValues";
 export default function Game() {
 
     // state ------------------------------------------------------------------------
 
-    const [grid, dispatchGrid] = useReducer(gridReducer, {
-        cells: initialCells,
-        direction: Directions.UP,
-        snake: initialPostions,
-        snakeSet: initialSnakeSet,
-        food: [],
-        speed: 5
-    });
-
+    const [grid, dispatchGrid] = useReducer(gridReducer, initialState);
 
     // side effects -----------------------------------------------------------------
 
@@ -36,17 +26,21 @@ export default function Game() {
 
     // auto move snake
     useEffect(() => {
+        if (grid.endGame) return () => { };
         const id = setInterval(() => {
+            console.log('snake moving');
             handleMove();
         }, 500 / grid.speed)
 
         return () => {
             clearInterval(id);
         }
-    }, [grid.speed]);
+    }, [grid.endGame]);
 
     // randomly generate food
     useEffect(() => {
+        if (grid.endGame) return () => { };
+
         const id = setInterval(() => {
             handlePlaceFood();
         }, 5000)
@@ -54,7 +48,7 @@ export default function Game() {
         return () => {
             clearInterval(id);
         }
-    }, []);
+    }, [grid.endGame]);
 
 
     // event handlers ---------------------------------------------------------------
@@ -62,6 +56,12 @@ export default function Game() {
     function handleMove() {
         dispatchGrid({
             type: 'moved',
+        })
+    }
+
+    function handlePlay() {
+        dispatchGrid({
+            type: 'startGame',
         })
     }
 
@@ -81,6 +81,8 @@ export default function Game() {
     return (
         <>
             <button onClick={handleMove} style={{ fontSize: 42, marginLeft: '700px' }}>move</button>
+            {grid.firstGame && <button onClick={handlePlay} style={{ fontSize: 42, marginLeft: '300px' }}>play</button>}
+            {grid.endGame && !grid.firstGame && <button onClick={handlePlay} style={{ fontSize: 42, marginLeft: '300px' }}>play again?</button>}
 
             <div className="game-container">
                 <GameGrid cells={grid.cells} />
