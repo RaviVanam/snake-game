@@ -1,0 +1,13 @@
+features
+    -score board
+    -explosives spawning randomly
+
+UI
+    -add head and tail
+    -make responsive
+    -make beautiful
+    -light/dark theme
+
+UX
+    -make playable on mobile
+    -add red spot to the place where the snake bites itself
