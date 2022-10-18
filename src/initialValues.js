@@ -17,7 +17,8 @@ export const initialState = {
     snake: snakePositions,
     snakeSet: initialSnakeSet,
     food: [],
-    speed: 5,
+    snakeSpeed: 10,
+    foodSpeed: 10,
     endGame: true,
     firstGame: true,
 }

@@ -4,7 +4,7 @@ import { initialState, gridRows, gridCols } from "./initialValues";
 export function gridReducer(grid, action) {
     switch (action.type) {
         case 'startGame': {
-            return { ...initialState, firstGame: false, endGame: false };
+            return { ...initialState, firstGame: false, endGame: false, foodSpeed: action.foodSpeed, snakeSpeed: action.snakeSpeed };
         }
         case 'moved': {
             const [i, j] = grid.snake[grid.snake.length - 1];
@@ -48,6 +48,18 @@ export function gridReducer(grid, action) {
                 ...grid,
                 cells: newCells,
                 food: newFood,
+            }
+        }
+        case 'snakeSpeedChanged': {
+            return {
+                ...grid,
+                snakeSpeed: action.speed,
+            }
+        }
+        case 'foodSpeedChanged': {
+            return {
+                ...grid,
+                foodSpeed: action.speed,
             }
         }
         default: {
