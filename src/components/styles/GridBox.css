@@ -1,21 +1,26 @@
-.grid-box {
-    width: 40px;
-    height: 40px;
-    border: 1px solid black;
+.grid {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #8C8273;
+    /* border: 10px solid green; */
 }
 
 .grid-row {
     display: flex;
-}
-
-.grid {
-    margin: 50px auto;
-    border: 1px solid black;
     width: fit-content;
 }
 
+.grid-box {
+    height: 20px;
+    width: 20px;
+    margin: 0px;
+    padding: 0px;
+    /* border: 1px solid white; */
+}
+
+
 .grid-box.empty {
-    background-color: white;
+    background-color: #181A1B;
 }
 
 .grid-box.food {
@@ -24,4 +29,5 @@
 
 .grid-box.snake {
     background-color: springgreen;
+    /* margin: 1px; */
 }
