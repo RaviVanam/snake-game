@@ -10,6 +10,7 @@ export default function Game() {
 
     useEffect(() => {
         const eventHandler = (e) => {
+            e.preventDefault();
             if (e.keyCode >= 37 && e.keyCode <= 40) // keycodes 37 to 40 match arrow keys
                 handleDirectionChanged(e.key);
         }
@@ -18,7 +19,17 @@ export default function Game() {
         return () => {
             window.removeEventListener('keydown', eventHandler);
         }
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        const id = setInterval(() => {
+            handleMove();
+        }, 100)
+
+        return () => {
+            clearInterval(id);
+        }
+    }, []);
 
     // state stuff ----------------------------------------------------------------
 
