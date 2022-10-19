@@ -2,6 +2,7 @@ features
     -high score (store in local storage)
     -drop mines randomly
     -don't spawn more than 7 food
+    -food disappears after 10sec
     -add game levels (create different mazes with walls that don't kill but stop)
 
 UI
