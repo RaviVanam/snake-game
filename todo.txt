@@ -1,6 +1,8 @@
 features
-    -score board
-    -explosives spawning randomly
+    -high score (store in local storage)
+    -drop mines randomly
+    -don't spawn more than 7 food
+    -add game levels (create different mazes with walls that don't kill but stop)
 
 UI
     -add head and tail
@@ -9,5 +11,7 @@ UI
     -light/dark theme
 
 UX
+    -allow WASD keys
+    -P for Pause/Resume
     -make playable on mobile
     -add red spot to the place where the snake bites itself
