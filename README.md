@@ -1,6 +1,5 @@
-# Snake Game
+# Snake Game 🐍 ([Play here](https://iamvr-snake.netlify.app/))
 
-### Play it [here](https://iamvr-snake.netlify.app/)!
 Being made with create-react-app.
 
 ## How to run the game on local machine
