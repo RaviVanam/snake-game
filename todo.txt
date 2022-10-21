@@ -4,6 +4,8 @@ features
     -don't spawn more than 7 food
     -food disappears after 10sec
     -add game levels (create different mazes with walls that don't kill but stop)
+    -two player mode (create a feature branch)
+    -two player online (create a feature branch)
 
 UI
     -add head and tail
