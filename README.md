@@ -10,6 +10,6 @@ Clone this repository and run the following scripts in project directory:
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### `npm run build` to create a production build of the add
+### `npm run build` to create a production build of the app
 
 Builds the app for production to the 'build' folder.
