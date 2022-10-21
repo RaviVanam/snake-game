@@ -32,11 +32,9 @@ export function gridReducer(grid, action) {
             return { ...grid, direction: action.newDirection }
         }
         case 'placeFood': {
-            console.log(grid.snakeSet[0][0]);
             let i = grid.snake[0][0];
             let j = grid.snake[0][1];
 
-            console.log(i + " " + j);
             while (grid.snakeSet[i][j]) {
                 i = Math.floor(Math.random() * grid.cells.length);
                 j = Math.floor(Math.random() * grid.cells[0].length);

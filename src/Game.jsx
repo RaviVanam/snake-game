@@ -11,7 +11,17 @@ export default function Game() {
     // side effects -----------------------------------------------------------------
 
     // add keydown listener
-    useEffect(() => {
+    useEffect(addKeydownListener, []);
+
+    // auto move snake
+    useEffect(autoMoveSnake, [grid.endGame, grid.snakeSpeed]);
+
+    // randomly generate food
+    useEffect(autoGenerateFood, [grid.endGame, grid.foodSpeed]);
+
+    // game event handlers && functions ----------------------------------------------
+
+    function addKeydownListener() {
         const handleKeyPressedEvent = (e) => {
             e.preventDefault();
             if (e.keyCode >= 37 && e.keyCode <= 40) // keycodes 37 to 40 match arrow keys
@@ -22,10 +32,9 @@ export default function Game() {
         return () => {
             window.removeEventListener('keydown', handleKeyPressedEvent);
         }
-    }, []);
+    }
 
-    // auto move snake
-    useEffect(() => {
+    function autoMoveSnake() {
         if (grid.endGame) return () => { };
         const id = setInterval(() => {
             console.log('snake moving');
@@ -35,10 +44,9 @@ export default function Game() {
         return () => {
             clearInterval(id);
         }
-    }, [grid.endGame, grid.snakeSpeed]);
+    }
 
-    // randomly generate food
-    useEffect(() => {
+    function autoGenerateFood() {
         if (grid.endGame) return () => { };
 
         const id = setInterval(() => {
@@ -48,10 +56,7 @@ export default function Game() {
         return () => {
             clearInterval(id);
         }
-    }, [grid.endGame, grid.foodSpeed]);
-
-
-    // event handlers ---------------------------------------------------------------
+    }
 
     function handleMove() {
         dispatchGrid({
