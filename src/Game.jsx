@@ -18,6 +18,9 @@ export default function Game() {
     // randomly generate food
     useEffect(autoGenerateFood, [grid.endGame, grid.foodSpeed]);
 
+    // remove food
+    useEffect(autoRemoveFood, [grid.endGame, grid.foodSpeed]);
+
     // use effect callbacks ---------------------------------------------------------
     function addKeydownListener() {
         const handleKeyPressedEvent = (e) => {
@@ -55,6 +58,17 @@ export default function Game() {
         }
     }
 
+    function autoRemoveFood() {
+        if (grid.endGame) return () => { };
+
+        const id = setInterval(() => {
+            handleRemoveFood();
+        }, 30000 / grid.foodSpeed)
+
+        return () => {
+            clearInterval(id);
+        }
+    }
     // event handlers ---------------------------------------------------------------
 
     function handleMove() {
@@ -81,6 +95,12 @@ export default function Game() {
     function handlePlaceFood() {
         dispatchGrid({
             type: 'placeFood',
+        })
+    }
+
+    function handleRemoveFood() {
+        dispatchGrid({
+            type: 'removeFood',
         })
     }
 
