@@ -26,7 +26,6 @@ export default function Game() {
     // use effect callbacks ---------------------------------------------------------
     function addKeydownListener() {
         const handleKeyPressedEvent = (e) => {
-            console.log(e);
             e.preventDefault();
             if (e.keyCode >= 37 && e.keyCode <= 40) // keycodes 37 to 40 match arrow keys
                 handleDirectionChanged(e.key);

@@ -1,5 +1,4 @@
 import GridBox from './GridBox'
-import { v4 as uuid } from 'uuid'
 
 export default function GameGrid({ cells }) {
 
