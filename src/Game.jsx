@@ -1,7 +1,9 @@
+import './Game.css';
 import GameGrid from "./components/GameGrid";
 import { useEffect, useReducer } from "react";
 import { gridReducer } from "./reducers.js";
 import { initialState } from "./initialValues";
+import { Directions } from "./components/utilities/directions";
 
 export default function Game() {
 
@@ -24,6 +26,7 @@ export default function Game() {
     // use effect callbacks ---------------------------------------------------------
     function addKeydownListener() {
         const handleKeyPressedEvent = (e) => {
+            console.log(e);
             e.preventDefault();
             if (e.keyCode >= 37 && e.keyCode <= 40) // keycodes 37 to 40 match arrow keys
                 handleDirectionChanged(e.key);
@@ -139,6 +142,13 @@ export default function Game() {
             </div>
             <div className="game-container">
                 <GameGrid cells={grid.cells} />
+            </div>
+
+            <div className="direction-buttons">
+                <button className="button" onClick={() => handleDirectionChanged(Directions.UP)}>UP</button>
+                <button className="button" onClick={() => handleDirectionChanged(Directions.LEFT)}>LEFT</button>
+                <button className="button" onClick={() => handleDirectionChanged(Directions.DOWN)}>DOWN</button>
+                <button className="button" onClick={() => handleDirectionChanged(Directions.RIGHT)}>RIGHT</button>
             </div>
         </>
     )
