@@ -1,18 +1,26 @@
 import { Directions } from "./components/utilities/directions";
-import { initialState, gridRows, gridCols } from "./initialValues";
+import { gridRows, gridCols } from "./initialValues";
 
 export function gridReducer(grid, action) {
     switch (action.type) {
         case 'startGame': {
-            return { ...initialState, firstGame: false, endGame: false, foodSpeed: action.foodSpeed, snakeSpeed: action.snakeSpeed };
+            return { ...grid, firstGame: false, endGame: false };
         }
         case 'moved': {
             const [i, j] = grid.snake[grid.snake.length - 1];
             const newPostion = getNextPostion(i, j, grid.cells.length, grid.cells[0].length, grid.direction);
+
             // if newPostion is snake itself then end the game
             if (grid.snakeSet[newPostion[0]][newPostion[1]]) return { ...grid, endGame: true, firstGame: false };
+
             const isFood = grid.cells[newPostion[0]][newPostion[1]] === 'food';
+
+            // remove the tail. but if snake ate food don't remove it
             const newSnake = grid.snake.filter((pos, i) => (i !== 0 || isFood));
+
+            // if food then remove it cuz the snake ate it.
+            const newFood = grid.food.filter(pos => (pos[0] !== newPostion[0]) || (pos[1] !== newPostion[1]));
+
             newSnake.push(newPostion);
             const newCells = grid.cells.map((cellRows) => cellRows.map((cellValue) => (cellValue === 'snake') ? 'empty' : cellValue));
             const newSnakeSet = new Array(grid.cells.length).fill(null).map(() => new Array(grid.cells[0].length).fill(false));
@@ -25,6 +33,7 @@ export function gridReducer(grid, action) {
                 cells: newCells,
                 snake: newSnake,
                 snakeSet: newSnakeSet,
+                food: newFood
             };
         }
         case 'directionChanged': {
@@ -32,6 +41,7 @@ export function gridReducer(grid, action) {
             return { ...grid, direction: action.newDirection }
         }
         case 'placeFood': {
+            if (grid.food.length >= 7) return grid;
             let i = grid.snake[0][0];
             let j = grid.snake[0][1];
 

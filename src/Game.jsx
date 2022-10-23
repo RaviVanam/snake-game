@@ -2,14 +2,13 @@ import GameGrid from "./components/GameGrid";
 import { useEffect, useReducer } from "react";
 import { gridReducer } from "./reducers.js";
 import { initialState } from "./initialValues";
+
 export default function Game() {
 
     // state ------------------------------------------------------------------------
-
     const [grid, dispatchGrid] = useReducer(gridReducer, initialState);
 
     // side effects -----------------------------------------------------------------
-
     // add keydown listener
     useEffect(addKeydownListener, []);
 
@@ -19,8 +18,7 @@ export default function Game() {
     // randomly generate food
     useEffect(autoGenerateFood, [grid.endGame, grid.foodSpeed]);
 
-    // game event handlers && functions ----------------------------------------------
-
+    // use effect callbacks ---------------------------------------------------------
     function addKeydownListener() {
         const handleKeyPressedEvent = (e) => {
             e.preventDefault();
@@ -37,7 +35,6 @@ export default function Game() {
     function autoMoveSnake() {
         if (grid.endGame) return () => { };
         const id = setInterval(() => {
-            console.log('snake moving');
             handleMove();
         }, 500 / grid.snakeSpeed)
 
@@ -57,6 +54,8 @@ export default function Game() {
             clearInterval(id);
         }
     }
+
+    // event handlers ---------------------------------------------------------------
 
     function handleMove() {
         dispatchGrid({
@@ -101,25 +100,23 @@ export default function Game() {
 
     return (
         <>
-            {/* <button onClick={handleMove} style={{ fontSize: 42, marginLeft: '700px' }}>move</button> */}
+            {/* <button onClick={autoMoveSnake} style={{ fontSize: 42, marginLeft: '700px' }}>move</button> */}
             {grid.firstGame && <button onClick={handlePlay} style={{ fontSize: 42, marginLeft: '300px' }}>play</button>}
             {grid.endGame && !grid.firstGame && <button onClick={handlePlay} style={{ fontSize: 42, marginLeft: '300px' }}>play again?</button>}
-            {grid.endGame &&
-                <div className="speed-options">
-                    <div className="snake-speed-options">
-                        <label htmlFor="">Snake Speed</label>
-                        <button onClick={handleSnakeSpeedChange} value={5}>Slow</button>
-                        <button onClick={handleSnakeSpeedChange} value={10}>Fast</button>
-                        <button onClick={handleSnakeSpeedChange} value={20}>Very Fast</button>
-                    </div>
-                    <div className="food-speed-options">
-                        <label htmlFor="">Food Speed</label>
-                        <button onClick={handleFoodSpeedChange} value={5}>Slow</button>
-                        <button onClick={handleFoodSpeedChange} value={10}>Fast</button>
-                        <button onClick={handleFoodSpeedChange} value={40}>Very Fast</button>
-                    </div>
+            <div className="speed-options">
+                <div className="snake-speed-options">
+                    <label htmlFor="">Snake Speed</label>
+                    <button onClick={handleSnakeSpeedChange} value={5}>Slow</button>
+                    <button onClick={handleSnakeSpeedChange} value={10}>Fast</button>
+                    <button onClick={handleSnakeSpeedChange} value={20}>Very Fast</button>
                 </div>
-            }
+                <div className="food-speed-options">
+                    <label htmlFor="">Food Speed</label>
+                    <button onClick={handleFoodSpeedChange} value={5}>Slow</button>
+                    <button onClick={handleFoodSpeedChange} value={10}>Fast</button>
+                    <button onClick={handleFoodSpeedChange} value={40}>Very Fast</button>
+                </div>
+            </div>
             <div className="game-container">
                 <GameGrid cells={grid.cells} />
             </div>
