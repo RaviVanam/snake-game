@@ -1,5 +1,7 @@
 # Snake Game 🐍 ([Play here](https://iamvr-snake.netlify.app/))
 
+Code Quality: [![CodeFactor](https://www.codefactor.io/repository/github/ravivanam/snake-game/badge)](https://www.codefactor.io/repository/github/ravivanam/snake-game)
+
 Being made with create-react-app.
 
 ## How to run the game on local machine
