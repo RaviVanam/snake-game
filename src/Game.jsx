@@ -10,6 +10,9 @@ export default function Game() {
     // state ------------------------------------------------------------------------
     const [grid, dispatchGrid] = useReducer(gridReducer, initialState);
 
+    // derived states
+    const score = grid.snake.length;
+
     // side effects -----------------------------------------------------------------
     // add keydown listener
     useEffect(addKeydownListener, []);
@@ -120,6 +123,17 @@ export default function Game() {
         })
     }
 
+    // dynamic content ---------------------------------------------------------------
+
+    const endGameBox = (grid.endGame && !grid.firstGame) ? (
+        <div className="end-game-box">
+            GameOver! <br />
+            <div className="score-board">
+                Score: {score}
+            </div>
+        </div>
+    ) : false
+
     return (
         <>
             {/* <button onClick={autoMoveSnake} style={{ fontSize: 42, marginLeft: '700px' }}>move</button> */}
@@ -141,6 +155,7 @@ export default function Game() {
             </div>
             <div className="game-container">
                 <GameGrid cells={grid.cells} />
+                {endGameBox}
             </div>
 
             <div className="direction-buttons">
