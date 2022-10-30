@@ -4,9 +4,13 @@
 }
 
 button {
-    background-color: #7B7B7B;
+    background-color: #88949c;
     border: none;
     border-radius: 5px;
+}
+
+button:hover {
+    background-color: #c6d5de;
 }
 
 .end-game-box {
@@ -15,6 +19,17 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.end-game-box>.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-size: 50px;
-    color: white;
+    color: #a8beca;
+}
+
+.blur {
+    filter: blur(10px);
 }

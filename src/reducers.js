@@ -3,15 +3,18 @@ import { initialState, gridRows, gridCols } from "./initialValues";
 
 export function gridReducer(grid, action) {
     switch (action.type) {
+        case 'resetGame': {
+            return { ...initialState };
+        }
         case 'startGame': {
-            return { ...grid, firstGame: false, endGame: false, snake: initialState.snake, direction: initialState.direction };
+            return { ...grid, endGame: false };
         }
         case 'moved': {
             const [i, j] = grid.snake[grid.snake.length - 1];
             const newPostion = getNextPostion(i, j, grid.cells.length, grid.cells[0].length, grid.direction);
 
             // if newPostion is snake itself then end the game
-            if (grid.snakeSet[newPostion[0]][newPostion[1]]) return { ...grid, endGame: true, firstGame: false };
+            if (grid.snakeSet[newPostion[0]][newPostion[1]]) return { ...grid, endGame: true, firstGame: false, gameOverScreen: true };
 
             const isFood = grid.cells[newPostion[0]][newPostion[1]] === 'food';
 

@@ -1,9 +1,8 @@
 import GridBox from './GridBox'
 
-export default function GameGrid({ cells }) {
-
+export default function GameGrid({ cells, gameOverScreen }) {
     return (
-        <div className="grid">
+        <div className={"grid" + ((gameOverScreen) ? " blur" : "")}>
             {cells.map((rows, i) =>
                 <div key={i} className="grid-row">
                     {rows.map((value, j) =>
