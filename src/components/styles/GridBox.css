@@ -4,7 +4,7 @@
     border: 1px solid #5D6468;
     background-color: #181A1B;
     transition-property: filter, rotate, scale, background-color;
-    transition-duration: 2s;
+    transition-duration: 1s;
     /* border: 10px solid green; */
 }
 
@@ -31,8 +31,7 @@
 }
 
 .blur {
-    filter: blur(10px);
-    rotate: 23deg;
+    filter: blur(20px);
     scale: 3;
     background-color: black;
 }
