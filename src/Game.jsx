@@ -2,7 +2,7 @@ import './Game.css';
 import GameGrid from "./components/GameGrid";
 import { useEffect, useReducer } from "react";
 import { gridReducer } from "./reducers.js";
-import { initialState } from "./initialValues";
+import { initialState, transitionDuration } from "./initialValues";
 import { Directions } from "./components/utilities/directions";
 
 export default function Game() {
@@ -129,7 +129,7 @@ export default function Game() {
             type: 'resetGame',
         })
 
-        setTimeout(handlePlay, 2000);
+        setTimeout(handlePlay, transitionDuration);
     }
 
     // dynamic content ---------------------------------------------------------------

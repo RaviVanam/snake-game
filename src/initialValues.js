@@ -1,5 +1,6 @@
 import { Directions } from "./components/utilities/directions";
 
+export const transitionDuration = 2000;
 export const gridRows = 30;
 export const gridCols = 40;
 const snakePositions = [[10, 20], [11, 20], [12, 20], [13, 20], [14, 20], [15, 20], [16, 20], [17, 20], [18, 20]].reverse();
