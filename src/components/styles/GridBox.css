@@ -1,8 +1,10 @@
 .grid {
     display: flex;
     flex-direction: column;
-    border: 1px solid #8C8273;
+    border: 1px solid #5D6468;
     background-color: #181A1B;
+    transition-property: filter, rotate, scale, background-color;
+    transition-duration: 2s;
     /* border: 10px solid green; */
 }
 
@@ -19,11 +21,6 @@
     /* border: 1px solid white; */
 }
 
-
-.grid-box.empty {
-    background-color: #181A1B;
-}
-
 .grid-box.food {
     background-color: orange;
 }
@@ -31,4 +28,11 @@
 .grid-box.snake {
     background-color: springgreen;
     /* margin: 1px; */
+}
+
+.blur {
+    filter: blur(10px);
+    rotate: 23deg;
+    scale: 3;
+    background-color: black;
 }

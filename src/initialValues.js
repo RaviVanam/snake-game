@@ -21,4 +21,5 @@ export const initialState = {
     foodSpeed: 10,
     endGame: true,
     firstGame: true,
+    gameOverScreen: false,
 }

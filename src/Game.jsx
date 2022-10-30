@@ -12,6 +12,7 @@ export default function Game() {
 
     // derived states
     const score = grid.snake.length;
+    const gameOverScreen = grid.gameOverScreen;
 
     // side effects -----------------------------------------------------------------
     // add keydown listener
@@ -123,22 +124,32 @@ export default function Game() {
         })
     }
 
+    function handlePlayAgain() {
+        dispatchGrid({
+            type: 'resetGame',
+        })
+
+        setTimeout(handlePlay, 2000);
+    }
+
     // dynamic content ---------------------------------------------------------------
 
-    const endGameBox = (grid.endGame && !grid.firstGame) ? (
+    const endGameBox = (gameOverScreen) ? (
         <div className="end-game-box">
-            GameOver! <br />
-            <div className="score-board">
-                Score: {score}
+            <div className="details">
+                Game Over! <br />
+                <div className="score-board">
+                    Score: {score}
+                </div>
             </div>
+            <button onClick={handlePlayAgain} style={{ fontSize: 42 }}>Play again?</button>
         </div>
     ) : false
 
     return (
         <>
             {/* <button onClick={autoMoveSnake} style={{ fontSize: 42, marginLeft: '700px' }}>move</button> */}
-            {grid.firstGame && <button onClick={handlePlay} style={{ fontSize: 42, marginLeft: '300px' }}>play</button>}
-            {grid.endGame && !grid.firstGame && <button onClick={handlePlay} style={{ fontSize: 42, marginLeft: '300px' }}>play again?</button>}
+            {grid.firstGame && <button onClick={handlePlay} style={{ fontSize: 42 }} > play</button>}
             <div className="speed-options">
                 <div className="snake-speed-options">
                     <label htmlFor="">Snake Speed</label>
@@ -154,7 +165,7 @@ export default function Game() {
                 </div>
             </div>
             <div className="game-container">
-                <GameGrid cells={grid.cells} />
+                <GameGrid cells={grid.cells} gameOverScreen={gameOverScreen} />
                 {endGameBox}
             </div>
 
