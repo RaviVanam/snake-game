@@ -2,3 +2,9 @@
     display: inline-block;
     margin: 10px auto;
 }
+
+button {
+    background-color: #7B7B7B;
+    border: none;
+    border-radius: 5px;
+}
