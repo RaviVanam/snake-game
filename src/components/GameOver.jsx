@@ -16,7 +16,7 @@ export default function GameOver({ score, handlePlayAgain }) {
     return (
         <div className="end-game-box">
             <div className="details">
-                Game Over! <br />
+                <h1>Game Over!</h1>
                 <div className="score-board">
                     Current Score: {score}
                 </div>
