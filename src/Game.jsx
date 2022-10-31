@@ -76,8 +76,8 @@ export default function Game() {
             clearInterval(id);
         }
     }
-    // event handlers ---------------------------------------------------------------
 
+    // event handlers ---------------------------------------------------------------
     function handleMove() {
         dispatchGrid({
             type: 'moved',
