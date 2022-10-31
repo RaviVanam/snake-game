@@ -30,6 +30,10 @@
     /* margin: 1px; */
 }
 
+.grid-box.mine {
+    background-color: grey;
+}
+
 .blur {
     filter: blur(20px);
     scale: 3;

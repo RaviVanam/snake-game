@@ -25,8 +25,14 @@ export default function Game() {
     // randomly generate food
     useEffect(autoGenerateFood, [grid.endGame, grid.foodSpeed]);
 
-    // remove food
+    // auto remove food
     useEffect(autoRemoveFood, [grid.endGame, grid.foodSpeed]);
+
+    // randomly drop mines
+    useEffect(autoDropMines, [grid.endGame, grid.mineSpeed]);
+
+    // auto remove mines
+    useEffect(autoRemoveMines, [grid.endGame, grid.mineSpeed]);
 
     // use effect callbacks ---------------------------------------------------------
     function addKeydownListener() {
@@ -77,6 +83,30 @@ export default function Game() {
         }
     }
 
+    function autoDropMines() {
+        if (grid.endGame) return () => { };
+
+        const id = setInterval(() => {
+            handlePlaceMine();
+        }, 7000 / grid.mineSpeed)
+
+        return () => {
+            clearInterval(id);
+        }
+    }
+
+    function autoRemoveMines() {
+        if (grid.endGame) return () => { };
+
+        const id = setInterval(() => {
+            handleRemoveMine();
+        }, 100000 / grid.mineSpeed)
+
+        return () => {
+            clearInterval(id);
+        }
+    }
+
     // event handlers ---------------------------------------------------------------
     function handleMove() {
         dispatchGrid({
@@ -111,6 +141,18 @@ export default function Game() {
         })
     }
 
+    function handlePlaceMine() {
+        dispatchGrid({
+            type: 'placeMine',
+        })
+    }
+
+    function handleRemoveMine() {
+        dispatchGrid({
+            type: 'removeMine',
+        })
+    }
+
     function handleSnakeSpeedChange(e) {
         dispatchGrid({
             type: 'snakeSpeedChanged',
@@ -121,6 +163,13 @@ export default function Game() {
     function handleFoodSpeedChange(e) {
         dispatchGrid({
             type: 'foodSpeedChanged',
+            speed: e.target.value,
+        })
+    }
+
+    function handleMineSpeedChange(e) {
+        dispatchGrid({
+            type: 'mineSpeedChanged',
             speed: e.target.value,
         })
     }
@@ -149,6 +198,12 @@ export default function Game() {
                     <button onClick={handleFoodSpeedChange} value={5}>Slow</button>
                     <button onClick={handleFoodSpeedChange} value={10}>Fast</button>
                     <button onClick={handleFoodSpeedChange} value={40}>Very Fast</button>
+                </div>
+                <div className="mine-speed-options">
+                    <label htmlFor="">Mine Speed</label>
+                    <button onClick={handleMineSpeedChange} value={5}>Slow</button>
+                    <button onClick={handleMineSpeedChange} value={10}>Fast</button>
+                    <button onClick={handleMineSpeedChange} value={40}>Very Fast</button>
                 </div>
             </div>
             <div className="game-container">
