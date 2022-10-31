@@ -7,10 +7,8 @@ export default function GameOver({ score, handlePlayAgain }) {
         return window.localStorage.getItem('high-score');
     }
 
-    // set high score if it isn't already there in local storage
     if (!getHighScore()) setHighScore(score);
 
-    // update high score
     if (getHighScore() < score) setHighScore((score));
 
     const highScore = getHighScore();
