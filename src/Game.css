@@ -29,7 +29,3 @@ button:hover {
     font-size: 50px;
     color: #a8beca;
 }
-
-.blur {
-    filter: blur(10px);
-}
