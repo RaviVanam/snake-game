@@ -1,5 +1,6 @@
 import './Game.css';
 import GameGrid from "./components/GameGrid";
+import GameOver from './components/GameOver';
 import { useEffect, useReducer } from "react";
 import { gridReducer } from "./reducers.js";
 import { initialState, transitionDuration } from "./initialValues";
@@ -132,20 +133,6 @@ export default function Game() {
         setTimeout(handlePlay, transitionDuration);
     }
 
-    // dynamic content ---------------------------------------------------------------
-
-    const endGameBox = (gameOverScreen) ? (
-        <div className="end-game-box">
-            <div className="details">
-                Game Over! <br />
-                <div className="score-board">
-                    Score: {score}
-                </div>
-            </div>
-            <button onClick={handlePlayAgain} style={{ fontSize: 42 }}>Play again?</button>
-        </div>
-    ) : false
-
     return (
         <>
             {/* <button onClick={autoMoveSnake} style={{ fontSize: 42, marginLeft: '700px' }}>move</button> */}
@@ -166,7 +153,7 @@ export default function Game() {
             </div>
             <div className="game-container">
                 <GameGrid cells={grid.cells} gameOverScreen={gameOverScreen} />
-                {endGameBox}
+                {gameOverScreen && <GameOver score={score} handlePlayAgain={handlePlayAgain} />}
             </div>
 
             <div className="direction-buttons">
