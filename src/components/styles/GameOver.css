@@ -1,0 +1,29 @@
+.end-game-box {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.end-game-box>.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    color: #a8beca;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 650px) {
+    .end-game-box>.details {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 450px) {
+    .end-game-box>.details {
+        font-size: 20px;
+    }
+}

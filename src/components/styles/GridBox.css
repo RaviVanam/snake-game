@@ -5,20 +5,29 @@
     background-color: #181A1B;
     transition-property: filter, rotate, scale, background-color;
     transition-duration: 1s;
+    max-width: 95%;
     /* border: 10px solid green; */
 }
 
 .grid-row {
     display: flex;
-    width: fit-content;
+    flex: 1;
 }
 
 .grid-box {
-    height: 20px;
-    width: 20px;
+    aspect-ratio: 1/1;
+    width: 30px;
     margin: 0px;
     padding: 0px;
     /* border: 1px solid white; */
+}
+
+@media (max-width: 450px) {
+    .grid-box {
+        flex-shrink: 0;
+        flex-grow: 1;
+        flex-basis: 10px;
+    }
 }
 
 .grid-box.food {

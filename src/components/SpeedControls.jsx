@@ -1,3 +1,4 @@
+import './styles/SpeedControls.css';
 export default function SpeedControls({ gameHandlers }) {
     return (
         <div className="speed-options">

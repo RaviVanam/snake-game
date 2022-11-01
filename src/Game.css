@@ -12,20 +12,3 @@ button {
 button:hover {
     background-color: #c6d5de;
 }
-
-.end-game-box {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.end-game-box>.details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 50px;
-    color: #a8beca;
-}

@@ -1,3 +1,5 @@
+import './styles/GameOver.css';
+
 export default function GameOver({ score, handlePlayAgain }) {
     function setHighScore(score) {
         window.localStorage.setItem('high-score', score);
