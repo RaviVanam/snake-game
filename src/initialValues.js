@@ -1,9 +1,9 @@
 import { Directions } from "./components/utilities/directions";
 
 export const transitionDuration = 1000;
-export const gridRows = 30;
-export const gridCols = 40;
-const snakePositions = [[10, 20], [11, 20], [12, 20], [13, 20], [14, 20], [15, 20], [16, 20], [17, 20], [18, 20]].reverse();
+export const gridRows = 15;
+export const gridCols = 20;
+const snakePositions = [[10, 10], [11, 10], [12, 10], [13, 10]].reverse();
 
 const initialCells = new Array(gridRows).fill(null).map(() => new Array(gridCols).fill('empty'));
 snakePositions.forEach(([i, j]) => {
