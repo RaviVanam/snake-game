@@ -13,6 +13,7 @@
     align-items: center;
     font-size: 50px;
     color: #a8beca;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 650px) {
