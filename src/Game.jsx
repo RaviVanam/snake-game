@@ -92,7 +92,7 @@ export default function Game() {
     }
 
     return (
-        <>handlers.
+        <>
             {/* <button onClick={autoMoveSnake} style={{ fontSize: 42, marginLeft: '700px' }}>move</button> */}
             {grid.firstGame && <button onClick={handlers.handlePlay} style={{ fontSize: 42 }} > play</button>}
             <div className="speed-options">
