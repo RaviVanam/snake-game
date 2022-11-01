@@ -19,6 +19,8 @@ export const initialState = {
     snakeSpeed: 10,
     foodSpeed: 10,
     mineSpeed: 10,
+    foodLimit: 5,
+    minesLimit: 12,
     endGame: true,
     firstGame: true,
     gameOverScreen: false,
