@@ -4,7 +4,7 @@ import { initialState, gridRows, gridCols } from "./initialValues";
 export function gridReducer(grid, action) {
     switch (action.type) {
         case 'resetGame': {
-            return { ...initialState };
+            return { ...initialState, firstGame: false };
         }
         case 'startGame': {
             return { ...grid, endGame: false };
