@@ -77,11 +77,9 @@ export default function useGameGrid() {
                 type: 'resetGame',
             })
 
-            setTimeout(this.handlePlay, transitionDuration);
+            setTimeout(handlers.handlePlay, transitionDuration);
         },
     }
-
-    handlers.handlePlayAgain.bind(handlers);
 
     return [grid, handlers];
 }
